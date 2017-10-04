@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Contatos</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    </head>
+    <body ng-app="contatosApp" ng-controller="contatosController">
+        <div class="container">
+            <h2>Formulário de Contatos</h2>
+            <form name="formContatos" ng-submit="adicionar()" novalidate>
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input id="nome" name="nome" ng-model="nome" type="text" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input id="email" name="email" ng-model="email" type="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Idade:</label>
+                    <input id="idade" name="idade" ng-model="idade" type="text" class="form-control" required>
+                </div>
+                <input type="submit" class="btn btn-primary" value="Adicionar"
+                    ng-disabled="formContatos.nome.$invalid || formContatos.email.$invalid
+                    || formContatos.idade.$invalid">
+                </input>
+            </form>
+        </div>
+        <br>
+        <div class="container">
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Idade</th>
+                    <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="contato in listaContatos">
+                        <td>{{contato.nome}}</td>
+                        <td>{{contato.email}}</td>
+                        <td>{{contato.idade}}</td>
+                        <td><a href="#" ng-click="deletar($index)">Deletar</a></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+<script src="js/App.js"></script>
+
+<script src="js/controllers/ContatosController.js"></script>
